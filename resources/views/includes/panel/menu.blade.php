@@ -27,13 +27,7 @@
         <i class="ni ni-bullet-list-67 text-red"></i> Tables
     </a>
     </li>
-   
-
-    <form action="{{route('logout')}}" method="POST" style="display: none;" id="cerrar" >
-       @csrf
-</form>
-    
-    
+  
 </ul>
 <!-- Divider -->
 <hr class="my-3">
