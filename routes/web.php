@@ -23,6 +23,8 @@ Route::get('/home', 'HomeController@index')->name('home');
 
 Route::get('/Especialidad', 'EspecialidadesController@index');
 Route::get('/Especialidad/create', 'EspecialidadesController@create');
-Route::get('/Especialidad/{Especialidades}/edit', 'EspecialidadesController@edit');
+Route::get('/Especialidad/{especialidades}/edit', 'EspecialidadesController@edit');
 
 Route::post('/Especialidad', 'EspecialidadesController@store');
+Route::put('/Especialidad/{especialidades}', 'EspecialidadesController@update');
+Route::delete('/Especialidad/{especialidades}', 'EspecialidadesController@destroy');
