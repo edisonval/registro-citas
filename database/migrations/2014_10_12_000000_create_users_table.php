@@ -19,6 +19,12 @@ class CreateUsersTable extends Migration
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
+            $table->string('cedula');
+
+            $table->string('direccion')->nullable();
+            $table->string('telefono')->nullable();
+            $table->string('tipo'); //aqui se guarda el tipo de usuario paciente, medico o administrador.
+
             $table->rememberToken();
             $table->timestamps();
         });

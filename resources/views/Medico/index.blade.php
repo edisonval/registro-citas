@@ -8,10 +8,10 @@
             <div class="card-header border-0">
               <div class="row align-items-center">
                 <div class="col">
-                  <h3 class="mb-0">Especialidades</h3>
+                  <h3 class="mb-0">Medicos</h3>
                 </div>
                 <div class="col text-right">
-                  <a href="{{url('Especialidad/create')}}" class="btn btn-success">Agregar especialidad</a>
+                  <a href="{{url('Medico/create')}}" class="btn btn-success">Agregar Medicos</a>
                 </div>
               </div>
             </div>
@@ -26,26 +26,30 @@
                 <thead class="thead-light">
                   <tr>
                     <th scope="col">Nombre</th>
-                    <th scope="col">Descripcion</th>
+                    <th scope="col">Cedula</th>
+                    <th scope="col">E-mail</th>
                     <th scope="col">Opciones</th>
                   </tr>
                 </thead>
                 <tbody>
-                @foreach ($especialidad as $especialidades)
+                @foreach ($medico as $medicos)
                   <tr>
                     <th scope="row">
-                      {{ $especialidades->nombre }}
+                      {{ $medicos->name }}
                     </th>
                     <td>
-                    {{ $especialidades->descripcion }}
+                    {{ $medicos->cedula }}
                     </td>
+                    <td>
+                      {{ $medicos->email }}
+                      </td>
                     <td>
                     
                     
-                    <form action="{{ url('/Especialidad/'.$especialidades->id) }}" method="post">
+                    <form action="{{ url('/Medico/'.$medicos->id) }}" method="post">
                       @csrf
                       @method('DELETE')
-                      <a href="{{ url('/Especialidad/'.$especialidades->id.'/edit') }}" text-color="white" class="btn btn-sm btn-primary">Editar</a>
+                      <a href="{{ url('/Medico/'.$medicos->id.'/edit') }}" text-color="white" class="btn btn-sm btn-primary">Editar</a>
                      <button type="submit" class="btn btn-sm btn-danger">Eliminar</button>
                     </form>
                     </td>

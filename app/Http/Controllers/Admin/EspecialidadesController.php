@@ -1,17 +1,15 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
 use App\Especialidades;
+use App\Http\Controllers\Controller;
 
 class EspecialidadesController extends Controller
 {
 
-    public function __construct()
-    {
-        $this->middleware('auth');
-    }
+   
 
     public function index()
     {
@@ -35,9 +33,11 @@ class EspecialidadesController extends Controller
       $especialidades = new Especialidades();
       $especialidades->nombre =$request->input('nombre');
       $especialidades->descripcion =$request->input('descripcion');
-      $especialidades->save(); //esto hace un insert en la base de datos
+      $especialidades->save(); //esto hace un insert en la base de datos 
 
-      return redirect('Especialidad');
+      $nespecialidad = $especialidades->nombre;
+      $notificacion = 'Especialidad "'. $nespecialidad. '" registrada con exito.';
+      return redirect('Especialidad')->with(compact('notificacion'));
 
     }
 
@@ -57,13 +57,18 @@ class EspecialidadesController extends Controller
       $especialidades->descripcion = $request->input('descripcion');
       $especialidades->save(); //esto hace un update en la base de datos
 
-      return redirect('Especialidad');
+      $nespecialidad = $especialidades->nombre;
+      $notificacion = 'Especialidad " '. $nespecialidad. ' " ha sido actualizada exitosamente.';
+      return redirect('Especialidad')->with(compact('notificacion'));
 
     }
 
     public function destroy(Especialidades $especialidades)
     {
         $especialidades->delete();
-        return redirect('Especialidad');
+
+        $nespecialidad = $especialidades->nombre;
+      $notificacion = 'Especialidad " '. $nespecialidad. ' " ha sido eliminada.';
+        return redirect('Especialidad')->with(compact('notificacion'));
     }
 }

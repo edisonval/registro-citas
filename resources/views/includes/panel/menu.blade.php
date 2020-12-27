@@ -1,33 +1,71 @@
 <!-- Navigation -->
 
-<h6 class="navbar-heading text-muted">Gestionar datos</h6>
+<h6 class="navbar-heading text-muted">
+    @if (auth()->User()->tipo == 'admin') Gestionar datos
+    @else 
+    Menú
+    @endif
+</h6>
+
 <ul class="navbar-nav">
-    <li class="nav-item">
-    <a class="nav-link" href="./index.html">
-        <i class="ni ni-tv-2 text-primary"></i> Dashboard
-    </a>
-    </li>
-    <li class="nav-item">
-    <a class="nav-link" href="./examples/icons.html">
-        <i class="ni ni-planet text-blue"></i> Especialidades
-    </a>
-    </li>
-    <li class="nav-item">
-    <a class="nav-link" href="./examples/maps.html">
-        <i class="ni ni-badge text-orange"></i> Medicos
-    </a>
-    </li>
-    <li class="nav-item">
-    <a class="nav-link" href="./examples/profile.html">
-        <i class="ni ni-single-02 text-yellow"></i> Pacientes
-    </a>
-    </li>
-    <li class="nav-item">
-    <a class="nav-link" href="./examples/tables.html">
-        <i class="ni ni-bullet-list-67 text-red"></i> Tables
-    </a>
-    </li>
-  
+    @if (auth()->User()->tipo == 'admin')
+        <li class="nav-item">
+        <a class="nav-link" href="/home">
+            <i class="ni ni-tv-2 text-primary"></i> Dashboard
+        </a>
+        </li>
+        <li class="nav-item">
+        <a class="nav-link" href="Especialidad">
+            <i class="ni ni-planet text-blue"></i> Especialidades
+        </a>
+        </li>
+        <li class="nav-item">
+        <a class="nav-link" href="/Medico">
+            <i class="ni ni-badge text-orange"></i> Medicos
+        </a>
+        </li>
+        <li class="nav-item">
+        <a class="nav-link" href="/Paciente">
+            <i class="archive-2"></i> Pacientes
+        </a>
+        </li>
+                <!-- Medicos -->
+        @elseif (auth()->User()->tipo == 'medico')
+
+        <li class="nav-item">
+            <a class="nav-link" href="/calendario">
+                <i class="ni ni-calendar-grid-58 text-blue"></i> Horario
+            </a>
+            </li>
+            <li class="nav-item">
+            <a class="nav-link" href="/Medico">
+                <i class="ni ni-book-bookmark text-orange"></i> Citas
+            </a>
+            </li>
+            <li class="nav-item">
+            <a class="nav-link" href="/Paciente">
+                <i class="ni ni-archive-2 text-red"></i> Pacientes
+            </a>
+            </li>
+
+            @else <!-- Pacientes -->
+
+            <li class="nav-item">
+                <a class="nav-link" href="/Medico">
+                    <i class="ni ni-book-bookmark text-orange"></i> Reservar cita
+                </a>
+                </li>
+                <li class="nav-item">
+                <a class="nav-link" href="/Paciente">
+                    <i class="ni ni-archive-2 text-red"></i> Mis citas
+                </a>
+                </li>
+        
+        @endif
+        <!-- Divider -->
+        <hr class="my-3">
+
+        @if (auth()->User()->tipo == 'admin')
 </ul>
 <!-- Divider -->
 <hr class="my-3">
@@ -47,3 +85,4 @@
     </li>
   
 </ul>
+@endif
